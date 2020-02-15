@@ -1,0 +1,62 @@
+﻿@model ContactInfo
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>İletişim Bilgileri Ekle</h2>
+
+
+    @using (Html.BeginForm("Insert", "ContactInfo", FormMethod.Post))
+    {
+    <div class="form-group">
+        <label for="name">Satıcı Adı:</label>
+        @Html.DropDownListFor(m => m.AppUserID, null, "", htmlAttributes: new { @class = "form-control" })
+       
+    </div>
+        <div class="form-group">
+            <label for="name">Adres:</label>
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">E-mail Adresi:</label>
+            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">Fax No:</label>
+            @Html.TextBoxFor(m => m.FaxNo, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">Telefon No:</label>
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        </div>
+
+
+        <div class="form-group">
+            <label for="name">Kargo Adı:</label>
+            @Html.DropDownListFor(m => m.ShipperID, null, "", htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label for="name">Çalışan Adı-Soyadı:</label>
+            @Html.DropDownListFor(m => m.SiteEmployeeID, null, "", htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">Tedarikçi:</label>
+            @Html.DropDownList("SupplierID", null, "", htmlAttributes: new { @class = "form-control" })
+        </div>
+
+
+        <button type="submit" class="btn btn-default">Kaydet</button>
+    }
+
+    @if (ViewBag.Message != null)
+    {
+        <div>@ViewBag.Message</div>
+    }
+
+</div>
+

@@ -1,0 +1,260 @@
+﻿
+<header>
+    <div class="header-top-area">
+        <div class="container">
+            <div class="header-top">
+                @if (Session["oturum"] != null)
+                    {
+                        AppUser gelen = (AppUser)Session["oturum"];
+                      
+                    <ul>
+
+                        <li>@Html.ActionLink("Çıkış Yap", "Logout", "Login", null, new { @class = "btn btn-default" })</li>
+
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="#">@gelen.UserName<i class="lnr lnr-chevron-down"></i></a>
+
+                            <!-- Dropdown Start -->
+                            <ul class="ht-dropdown">
+
+                                <li><a href="#">Hesabım </a></li>
+
+                                <li>
+                                    @Html.ActionLink("Bilgilerimi Güncelle", "UpdateUsers", "Login", new { id = gelen.ID }, new { @class = "btn btn-default" })
+                                </li>
+
+                                <li>
+                                    @Html.ActionLink("İletişim Bilgilerim", "Index", "ContactInformation", new { id = gelen.ID, }, new { @class = "btn btn-default" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Siparişlerim", "Index", "Orders", new { id = gelen.ID, }, new { @class = "btn btn-default" })
+                                </li>
+                               
+                                <li> @Html.ActionLink("Ürün Yorumlarım","CommentListByAppUser","Home",new { id=gelen.ID} , new { @class="btn btn-default"}) </li>
+
+                                <li> @Html.ActionLink("Kart Bilgilerim", "Index", "BankCard", new { id = gelen.ID }, new { @class = "btn btn-default" })</li>
+
+                                <li> @Html.ActionLink("Kart Ekle", "Insert", "BankCard", new { id = gelen.ID }, new { @class = "btn btn-default" })</li>
+
+                            </ul>
+                    </li>
+                </ul>
+            }
+            </div>
+        </div>
+    </div>
+    <div class="header-middle ptb-15">
+        <div class="container">
+            <div class="row align-items-center no-gutters">
+                <div class="col-lg-3 col-md-12">
+                    <div class="logo mb-all-30">
+                        <a href="/Home/Index"><img src="~/Content/img/logo/logo.png" alt="logo-image"></a>
+                    </div>
+                </div>
+                <!-- Categorie Search Box Start Here -->
+                <div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
+                    <div class="categorie-search-box">
+                            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                            {
+                                @Html.TextBox("searching")
+
+                                <button type="submit"><i class="lnr lnr-magnifier"></i></button>
+                            }
+                            <div class="form-group">
+
+                                <select class="bootstrap-select" name="poscats">
+                                    <option>Tüm Kategoriler</option>
+                                    @foreach (Category item in ViewBag.Categories)
+                                    {
+
+                                        <option>@item.CategoryName</option>
+                                    }
+                                </select>
+                            </div>
+
+
+                            @*<input type="text" name="search" placeholder="Ara">
+
+        <button><i class="lnr lnr-magnifier"></i></button>*@
+
+                            @*@using (Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
+            @Html.TextBox("searching")
+
+            <button type="submit"><i class="lnr lnr-magnifier"></i></button>
+        }*@
+
+
+
+                    </div>
+                </div>
+                <!-- Categorie Search Box End Here -->
+                <!-- Cart Box Start Here -->
+                <div class="col-lg-4 col-md-12">
+                    <div class="cart-box mt-all-30">
+                        <ul class="d-flex justify-content-lg-end justify-content-center align-items-center">
+                            <li>
+                                <a href="/ShoppingCart/CartList"><i class="lnr lnr-cart"></i><span class="my-cart"><span class="total-pro">@ViewBag.Count</span><span>Sepetim</span></span></a>
+                               
+                                
+                            </li>
+                            
+                                @if (Session["oturum"] == null)
+                                {
+                                    <li>
+                                    <a href="/Login/Login"><i class="lnr lnr-user"></i><span class="my-cart"><span> <strong>Giriş Yap</strong> Veya</span><span> Kayıt Ol</span></span></a>
+
+                                    </li>
+                                 }
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Cart Box End Here -->
+                </div>
+                <!-- Row End -->
+            </div>
+            <!-- Container End -->
+        </div>
+        <!-- Header Middle End Here -->
+        <!-- Header Bottom Start Here -->
+        <div class="header-bottom  header-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-4 col-md-6 vertical-menu d-none d-lg-block">
+                        <span class="categorie-title">Kategoriler</span>
+                    </div>
+
+                </div>
+                <!-- Row End -->
+            </div>
+            <!-- Container End -->
+        </div>
+        <!-- Header Bottom End Here -->
+        <!-- Mobile Vertical Menu Start Here -->
+        <div class="container d-block d-lg-none">
+            @foreach (Category item in ViewBag.Categories)
+                        //SubCategory
+                        {
+                <div class="vertical-menu mt-30">
+                    <span class="categorie-title mobile-categorei-menu">Kategoriler </span>
+                    <nav>
+
+                        <div id="cate-mobile-toggle" class="category-menu sidebar-menu sidbar-style mobile-categorei-menu-list menu-hidden ">
+                            <ul>
+                                <li class="has-sub">
+                                    <a href="#">@item.CategoryName </a>
+                                    <ul class="category-sub">
+                                        @foreach (SubCategory h in ViewBag.SubCategories)
+
+                    //Sonradan
+                    {
+                                            <li class="has-sub">
+                                                <a href="#">@h.SubCategoryName</a>
+                                                <ul class="category-sub">
+                                                    @foreach (SubSubCategory y in ViewBag.SubSubCategories)
+                                                    {
+                                                        if (h.ID==y.SubCategoryID)
+                                                        {
+                                                            //SubSubCategory
+                                                            <li><a href="#"> @y.SubSubCategoryName</a></li>
+                                                        }
+                                                        
+                                                    }
+
+                                                </ul>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                    <!-- category submenu end-->
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- category-menu-end -->
+                    </nav>
+                </div>
+            }
+
+        </div>
+        <!-- Mobile Vertical Menu Start End -->
+    </header>
+    <!-- Main Header Area End Here -->
+    <!-- Categorie Menu & Slider Area Start Here -->
+    <div class="main-page-banner home-3">
+        <div class="container">
+
+            <div class="row">
+                <!-- Vertical Menu Start Here -->
+                <div class="col-xl-3 col-lg-4 d-none d-lg-block">
+                    <div class="vertical-menu mb-all-30">
+                        <nav>
+                            <ul class="vertical-menu-list">
+                                @foreach (Category item in ViewBag.Categories)
+
+                                    //SUbSub
+                                {
+                                    
+                                    <li class="">
+                                        @*<a href="#">@item.Category.CategoryName</a>*@
+                                        <a href="@Url.Action("Products","Home",new {id=item.ID })"><span><img src="~/Content/img/vertical-menu/1.png" alt="menu-icon"></span>@item.CategoryName<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        @*<a href="@Url.Action("Products", "Home", new { id = @item.CategoryID },null)"><span><img src="~/Content/img/vertical-menu/1.png" alt="menu-icon"></span>@item.Category.CategoryName<i class="fa fa-angle-right" aria-hidden="true"></i></a>*@
+                                        <ul class="ht-dropdown mega-child">
+                                            @*//Foreach Sonradan*@
+                                            @foreach (SubCategory h in ViewBag.SubCategories)
+                                            {
+                                                //sonradan
+                                                if (h.CategoryID==item.ID)
+                                                {
+                                            <li>
+                                                @*<a href="@Url.Action("Products", "Home", new { id = @item.CategoryID },null)">@item.SubCategoryName <i class="fa fa-angle-right"></i></a>*@
+
+                                                <a href="@Url.Action("Products","Home",new {id=item.ID })">@h.SubCategoryName <i class="fa fa-angle-right"></i></a>
+                                                <!-- category submenu end-->
+                                                @foreach (SubSubCategory x in ViewBag.SubSubCategories)
+
+                                                //Sonradan
+                                                
+                                                {
+                                                    if (x.SubCategoryID == h.ID)
+                                                    {
+                                                        <ul class="ht-dropdown mega-child">
+                                                            <li><a href="@Url.Action("Products","Home",new {id=item.ID })"> @x.SubSubCategoryName </a></li>
+                                                        </ul>
+                                                    }
+
+                                                }
+                                                <!-- category submenu end-->
+                                            </li>
+
+                                                }
+                                            }
+
+
+                                        </ul>
+                                        <!-- category submenu end-->
+                                        <!-- More Categoies Start -->
+                                        <!-- More Categoies End -->
+
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+
+
+                <!-- Vertical Menu End Here -->
+            </div>
+
+
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Categorie Menu & Slider Area End Here -->
+    <!-- Breadcrumb Start -->

@@ -1,0 +1,42 @@
+﻿@model ProductDetail
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Ürün Detayı Ekle</h2>
+    @using (Html.BeginForm("Insert", "ProductDetail", FormMethod.Post))
+    {
+    <div class="form-group">
+        <label for="name">Ürün:</label>
+        @Html.DropDownList("ProductID", null, "", htmlAttributes: new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(m => m.ProductID, "Ürün adı seçmek zorunludur", new { @class = "text-danger" })
+
+    </div>
+        <div class="form-group">
+            <label for="name">Beden:</label>
+            @*@Html.DropDownList("SizeID", null, "", htmlAttributes: new { @class = "form-control" })*@
+            @Html.DropDownListFor(m => m.ProductSizeID, null, "", htmlAttributes: new { @class = "form-control" })
+
+        </div>
+
+        <div class="form-group">
+            <label for="name">Renk:</label>
+            @*@Html.DropDownList("ColourID", null, "", htmlAttributes: new { @class = "form-control" })*@
+            @Html.DropDownListFor(m => m.ProductColourID, null, "", htmlAttributes: new { @class = "form-control" })
+
+        </div>
+
+        <div class="form-group">
+            <label for="name">Ürün Detayı:</label>
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-default">Kaydet</button>
+    }
+</div>
+

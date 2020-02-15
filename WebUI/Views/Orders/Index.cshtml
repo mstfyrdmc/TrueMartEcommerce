@@ -1,0 +1,96 @@
+﻿@*@model List<Order>*@
+@{
+    /**/
+
+
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="container">
+    <br />
+    <h3>Siparişlerim</h3>
+    <br />
+
+    <table class="table table-hover">
+        <thead>
+
+
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Ürün Adedi</th>
+                <th>Ürün Birim Fiyatı</th>
+                <th>Sipariş Onaylandı Mı?</th>
+                <th>Sipariş Tarihi</th>
+                <th>Kargo Tarhihi</th>
+                <th>Kargo Adresi</th>
+                <th>Kargo Adı</th>
+                <th>Durum</th>
+                <th>######</th>
+            </tr>
+
+
+        </thead>
+        <tbody>
+
+            @if (Session["oturum"] != null)
+            {
+                AppUser gelen = (AppUser)Session["oturum"];
+                OrderDetailService ods = new OrderDetailService();
+                OrderService os = new OrderService();
+                ProductService ps = new ProductService();
+                AppUserService aus = new AppUserService();
+
+
+                foreach (OrderDetail item in ods.GetDefault(m => m.AppUserID == gelen.ID))
+                {
+                    Product urun = ps.GetByID((Guid)item.ProductID);
+                    Order siparis = os.GetByDefault(m => m.ID == item.OrderID);
+                    AppUser kullanici = aus.GetByID((Guid)item.AppUserID);
+                    OrderDetail detail = ods.GetByDefault(m => m.ProductID == item.ProductID);
+                    <tr>
+                        <td>@urun.ProductName</td>
+                        <td>@item.Quentity</td>
+                        <td>@item.Price</td>
+                        @if (siparis.IsComfirmed == true)
+                        {
+                            <td>Onaylandı</td>
+                        }
+                        else
+                        {
+                            <td>Onaylanmadı</td>
+                        }
+                        @*<td>@siparis.IsComfirmed</td>*@
+                        <td>@siparis.OrderDate</td>
+                        <td>@siparis.ShippedDate</td>
+                        <td>@siparis.ShippedAddress</td>
+                        <td>@(siparis.Shipper != null ? siparis.Shipper.ShipperName : "-")</td>
+                        @if (detail.Status==Status.Active)
+                        {
+                            <td>Sipariş Hazırlanıyor</td>
+                        }
+                        else if(detail.Status==Status.Deleted)
+                        {
+                            <td>Sipariş İptal Edildi</td>
+                        }
+                        else if (detail.Status==Status.Updated)
+                        {
+                            <td>Sipariş Güncellendi</td>
+                        }
+                        @*<td>@siparis.Status</td>*@
+                        <td>
+                            @Html.ActionLink("Güncelle", "UpdateOrder", "Orders", new { id = item.ID }, new { @class = "btn customer-btn" })
+
+                            @Html.ActionLink("İptal Et", "Delete", "Orders", new { id = item.ID }, new { @class = "btn customer-btn" })
+                        </td>
+                    </tr>
+                }
+              
+            }
+        </tbody>
+    </table>
+</div>

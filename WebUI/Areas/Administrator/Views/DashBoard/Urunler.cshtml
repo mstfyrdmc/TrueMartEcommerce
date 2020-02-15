@@ -1,0 +1,148 @@
+﻿@model Tuple<IEnumerable<EnPahaliUrunler>, IEnumerable<EnUcuzUrunler>, IEnumerable<EnCokUrunSatilanKategori>,IEnumerable<EnCokTercihEdilenKargoFirmalari>>
+@{
+    ViewBag.Title = "Urunler";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container">
+
+
+    <br />
+    <br />
+    <h2>Ürun Analizleri</h2>
+    @Html.ActionLink("Analiz-3", "Satici", "DashBoard", null, new { @class = "btn btn-info" })
+
+    <br />
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En Pahalı 10 Ürün</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Ürün Adı</th>
+                                <th>Fiyatı</th>
+                                <th>Stok Adet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (EnPahaliUrunler item in Model.Item1)
+                            {
+                                <tr>
+                                    <td>@item.UrunAdi</td>
+                                    <td>@item.UrunFiyati ₺</td>
+                                    <td>@item.Stock</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En Ucuz 10 Ürün</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Ürün Adı</th>
+                                <th>Fiyatı</th>
+                                <th>Stok Adet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (EnUcuzUrunler item in Model.Item2)
+                            {
+                                <tr>
+                                    <td>@item.UrunAdi</td>
+                                    <td>@item.Price ₺</td>
+                                    <td>@item.Stock</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hangi Kategori Ne Kadar Urun Sattı</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Katgeroi Adı</th>
+                                <th> Adet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (EnCokUrunSatilanKategori item in Model.Item3)
+                            {
+                                <tr>
+                                    <td>@item.KategoriAdi</td>
+                                    <td>@item.Adet</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En Çok Tercih Edilen Kargo Firmaları</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kargo Firması</th>
+                                <th>Tercih Edilme Sayısı</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (EnCokTercihEdilenKargoFirmalari item in Model.Item4)
+                            {
+                                <tr>
+                                    <td>@item.KargoFirmalari</td>
+                                    <td>@item.Sayi</td>
+                                </tr>
+                                @*<h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@item.Adi  @item.Adet</font></font></h2>*@
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

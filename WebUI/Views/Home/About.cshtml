@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>About || Truemart Responsive Html5 Ecommerce Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- Breadcrumb Start -->
+        <!-- Breadcrumb End -->
+        <!-- About Us Start Here -->
+        <div class="about-us pt-100 pt-sm-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="sidebar-img mb-all-30">
+                            <img src="~/Content/img/eticaret_resim.jpg" alt="single-blog-img">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-desc">
+                            <h3 class="mb-10 about-title">Hakkımızda</h3>
+                            <p class="mb-20">Türkiye'nin En Büyük E - Ticaret Sitesine Hoş Geldiniz! </p>
+                            <p class="mb-20">2001 yılından beri Türkiye’de online alışverişin en güçlü ismiyiz. Kurduğumuz hayaller ve ulaştığımız hedeflerle bugünlere ulaştık. Online alışverişi geliştirdik, hizmet anlayışımızla fark yarattık. Hem çok büyüdük hem çok sevildik!  2</p>
+                            <p>
+                                Yıllar içinde pek çok ödüle layık görüldük. 2011, 2012 ve 2013 yıllarında Türkiye’nin en sevilen markası, 2013 yılında ise Yılın E-ticaret Sitesi seçildik.
+                                
+                            </p>
+                            <p>Bugün Türkiye’de online alışverişin lideri olarak; üyelerimize nerede olurlarsa olsunlar, en iyi ürünü en uygun fiyatla ulaştırmak için çalışıyoruz. Büyümeye ve e-ticareti büyütmeye devam ediyoruz.</p>
+                            <p>Her zaman bizi tercih ettiğiniz için teşekkür ederiz, iyi alışverişler dileriz.</p>
+                            <a href="#" class="return-customer-btn read-more">Daha Fazlası</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about-team pt-100 pt-sm-60">
+            <div class="container">
+                <h3 class="mb-30 about-title">Takım Arkadaşlarımız</h3>
+                <div class="row text-center">
+                  
+                    @foreach (SiteEmployee item in (List<SiteEmployee>)ViewData["Employee"])
+                    {
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="single-team mb-all-30">
+                                @*<div class="team-img sidebar-img">*@
+                                    @*<img src="~/Content/img/team/2.jpg" alt="team-image">*@
+                                    <div class="team-link">
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        </ul>
+                                    </div>
+                                @*</div>*@
+                                <div class="team-info">
+                                    <h4>@item.Name  @item.LastName</h4>
+                                    <p>@item.Profession</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    
+                </div>
+            </div>
+        </div>
+        <div class="about-skill ptb-100 ptb-sm-60">
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿@*@model Tuple<Product,List<ProductComment>>*@
+
+@model Product
+
+@{
+    ViewBag.Title = "CommentList2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="review border-default universal-padding">
+    <h2>Müşteri Yorumları</h2>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <th>Ürün Adı</th>
+                <th>Yorumlar</th>
+                <th>Beğeniler</th>
+            </tr>
+        </thead>
+        <tbody>
+          
+            @foreach (Product item1 in (List<Product>) ViewData["Products"])
+            {
+                if (Model.ID == item1.ID)
+                {
+                   
+                    foreach (ProductComment item in (List<ProductComment>)ViewData["ProductComment"])
+                    {
+                        if (item.ProductID == item1.ID)
+                        {
+
+                            <tr>
+                                <td>@item.AppUser.UserName</td>
+                                <td>@item.Product.ProductName</td>
+                                <td>@item.Comment</td>
+                                <td>@item.ProductLikes</td>
+
+                            </tr>
+
+                        }
+
+
+                    }
+                }
+                
+            }
+
+        </tbody>
+    </table>
+</div>

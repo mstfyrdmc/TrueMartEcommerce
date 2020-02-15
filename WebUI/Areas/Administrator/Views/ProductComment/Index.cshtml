@@ -1,0 +1,40 @@
+﻿@model List<ProductComment>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Ürün Yorumları Listesi</h2>
+    <br />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Yorumlar</th>
+                <th>Beğeniler</th>
+                <th>Kullanıcı Adı</th>
+                <th>Durum</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ProductComment item in Model)
+            {
+                <tr>
+                    @*<td>@item.Product.ProductName</td>*@
+                    <td>@(item.Product != null ? item.Product.ProductName : "-")</td>
+                    <td>@item.Comment</td>>
+                    <td>@item.ProductLikes</td>>
+                    <td>@(item.AppUser != null ? item.AppUser.UserName : "-")</td>
+                    <td>@item.Status</td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+</div>

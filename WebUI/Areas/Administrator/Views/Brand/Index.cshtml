@@ -1,0 +1,47 @@
+﻿@model List<Brand>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Marka Listesi</h2>
+    @Html.ActionLink("Yeni Kayıt", "Insert", "Brand", null, new { @class = "btn btn-default" })
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Marka Adı</th>
+                <th>Açıklaması</th>
+                <th>Durum</th>
+                <th>Resim</th>
+                <th>#####</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Brand item in Model)
+            {
+                <tr>
+
+                    <td>@item.BrandName</td>
+                    <td>@item.Description</td>
+                    <td>@item.Status</td>
+                    <td>@item.ImagePath</td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "Update", "Brand", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                        @Html.ActionLink("Sil", "Delete", "Brand", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+

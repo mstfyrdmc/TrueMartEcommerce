@@ -1,0 +1,63 @@
+﻿@model List<Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+
+    <h2>Ürün Listesi</h2>
+    <div class="container">
+        @Html.ActionLink("Yeni Kayıt", "Insert", "Product", null, new { @class = "btn btn-default" })
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Açıklaması</th>
+                    <th>Ürün Fiyatı</th>
+                    <th>Stok Miktarı</th>
+                    <th>Kategorisi</th>
+                    <th>Alt Kategorisi</th>
+                    <th>Alt Alt Kategorisi</th>
+                    <th>User Name</th>
+                    <th>Brand Name</th>
+                    <th>Company Name</th>
+                    <th>Durum</th>
+                    <th>#####</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Product item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price</td>
+                        <td>@item.UnitsInStock</td>
+                        <td>@(item.Category != null ? item.Category.CategoryName : "-" )</td>
+                        <td>@(item.SubCategory != null ? item.SubCategory.SubCategoryName : "-" )</td>
+                        <td>@(item.SubSubCategory != null ? item.SubSubCategory.SubSubCategoryName : "-" )</td>
+                        <td>@(item.AppUser != null ? item.AppUser.UserName : "-" )</td>
+                        <td>@(item.Brand != null ? item.Brand.BrandName : "-" )</td>
+                        <td>@(item.Supplier != null ? item.Supplier.CompanyName : "-" )</td>
+                        <td>@item.Status</td>
+                        <td>
+                            @Html.ActionLink("Güncelle", "Update", "Product", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                            @Html.ActionLink("Sil", "Delete", "Product", new { id = item.ID }, new { @class = "btn btn-default" })
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+</div>
+

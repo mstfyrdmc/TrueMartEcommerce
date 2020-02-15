@@ -1,0 +1,49 @@
+﻿@model List<SubSubCategory>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Alt Alt Kategori Listesi</h2>
+
+    @Html.ActionLink("Yeni Kayıt", "Insert", "SubSubCategory", null, new { @class = "btn btn-default" })
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Üst Kategori Adı</th>
+                <th>Alt Kategori Adı</th>
+                <th>Açıklama</th>
+                <th>Durum</th>
+                <th>Resim</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (SubSubCategory item in Model)
+            {
+                <tr>
+                    @*<td>@item.SubCategories.SubCategoryName</td>*@
+                    <td>@(item.SubCategories != null ? item.SubCategories.SubCategoryName : "-")</td>
+                    <td>@item.SubSubCategoryName</td>
+                    <td>@item.Description</td>
+                    <td>@item.Status</td>
+                    <td>@item.ImagePath</td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "Update", "SubSubCategory", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                        @Html.ActionLink("Sil", "Delete", "SubSubCategory", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+

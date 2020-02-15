@@ -1,0 +1,33 @@
+﻿@model Brand
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Marka Güncelleme</h2>
+
+    @using (Html.BeginForm("Update", "Brand", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="form-group">
+            <label for="username">Marka Adı:</label>
+            @Html.TextBoxFor(m => m.BrandName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="username">Açıklaması:</label>
+            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label for="image">Resim:</label>
+            <input type="file" name="fluResim" />
+        </div>
+
+        <button type="submit" class="btn btn-default">Güncelle</button>
+    }
+
+</div>
+

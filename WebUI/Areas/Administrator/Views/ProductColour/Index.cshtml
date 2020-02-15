@@ -1,0 +1,42 @@
+﻿@model List<ProductColour>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Renk Listesi</h2>
+
+    @Html.ActionLink("Yeni Kayıt", "Insert", "ProductColour", null, new { @class = "btn btn-default" })
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Renk</th>
+                <th>Durum</th>
+                <th>Oluşturulma Tarihi</th>
+                <th>#####</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ProductColour item in Model)
+            {
+                <tr>
+                    <td>@item.Colour</td>
+                    <td>@item.Status</td>
+                    <td>@item.CreatedDate</td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "Update", "ProductColour", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                        @Html.ActionLink("Sil", "Delete", "ProductColour", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

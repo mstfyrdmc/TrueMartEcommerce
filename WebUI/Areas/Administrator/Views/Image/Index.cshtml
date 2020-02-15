@@ -1,0 +1,42 @@
+﻿@model List<Image>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Ürün Resimleri Listesi</h2>
+    @Html.ActionLink("Yeni Kayıt", "Insert", "Image", null, new { @class = "btn btn-default" })
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Resim Yolu</th>
+                <th>Durum</th>
+                <th>####</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Image item in Model)
+            {
+                <tr>
+
+                    <td>@(item.Product != null ? item.Product.ProductName : "-")
+                    <td>
+                    <td>@item.ImagePath</td>
+                    <td>@item.Status</td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "Update", "Image", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                        @Html.ActionLink("Sil", "Delete", "Image", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,25 @@
+﻿@model OrderDetail
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Adı</th>
+            <th>Price</th>
+            <th>Adet</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>@Model.Product.ProductName</td>
+            <td>@Model.Price</td>
+            <td>@Model.Quentity</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,75 @@
+﻿@model Supplier
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Update</h2>
+    @using (Html.BeginForm("Update", "Supplier", FormMethod.Post))
+    {
+
+        <div class="form-group">
+            <label for="name">Şirket Adı:</label>
+            @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="surname">Aracı Kişi:</label>
+            @Html.TextBoxFor(m => m.ContactName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="surname">İl:</label>
+            @Html.DropDownList("ProvinceID", null, htmlAttributes: new { @class = "form form-control" })
+        </div>
+        <div class="form-group">
+            <label for="birthdate">İlçe:</label>
+            @Html.DropDownList("TownID", null, htmlAttributes: new { @class = "form form-control" })
+        </div>
+
+
+        <button type="submit" class="btn btn-default">Güncelle</button>
+    }
+
+
+</div>
+
+
+@section scripts{
+
+    <script>
+
+         $(function () {
+        if ($("#ProvinceID").val() == '0') {
+            var productDefaultValue = "<option value='0'>--Select a category first--</option>";
+            $("#TownID").html(productDefaultValue).show();
+        }
+
+        $("#ProvinceID").change(function () {
+            var selectedItemValue = $(this).val();
+
+            var ddlProducts = $("#TownID");
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: '@Url.Action("GetTownByProvince")',
+                data: { "id": selectedItemValue  },
+                success: function (data) {
+                    ddlProducts.html('');
+                    $.each(data, function (id, option) {
+                        ddlProducts.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Found error to load product!!.');
+                }
+            });
+        });
+    });
+
+    </script>
+
+}
+
+

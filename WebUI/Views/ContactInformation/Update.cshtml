@@ -1,0 +1,84 @@
+﻿@model ContactInfo
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Register || Truemart Responsive Html5 Ecommerce Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+    <!-- Main Wrapper Start Here -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="register-title">
+                    <h3 class="mb-10">İletişim Bilgisi Güncelle</h3>
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm("Update", "ContactInformation", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-register" action="#">
+                        <fieldset>
+                            <legend>İletişim Bilgilerim</legend>
+
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="l-name"><span class="require">*</span>Adres</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="l-name"><span class="require">*</span>E-mail</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="email"><span class="require">*</span>Fax No</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.FaxNo, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="email"><span class="require">*</span>Telefon Numarası</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+
+
+                        </fieldset>
+
+
+                        <div class="terms">
+                            <div class="float-md-right">
+
+                                <input type="submit" value="Kaydet" class="return-customer-btn">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+
+        <!-- Row End -->
+        <!-- Row End -->
+    </div>
+    <!-- Container End -->
+</body>
+</html>
+
+
+

@@ -1,0 +1,24 @@
+﻿@model ProductSize
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Size Güncelle</h2>
+
+    @using (Html.BeginForm("Update", "ProductSize", FormMethod.Post))
+    {
+        <div>
+            <label class="form-group">Size:</label>
+            @Html.TextBoxFor(m => m.Size, new { @class = "form-control" })
+        </div>
+
+
+        <button type="submit" class="btn btn-default"> Güncelle</button>
+    }
+
+</div>
+

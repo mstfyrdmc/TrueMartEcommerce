@@ -1,0 +1,46 @@
+﻿@model List<ProductComment>
+
+@{
+    ViewBag.Title = "CommentListByAppUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="review border-default universal-padding">
+    <h2>Ürün Yorumlarım</h2>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <th>Ürün Adı</th>
+                <th>Yorumlar</th>
+                <th>Beğeniler</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            @foreach (ProductComment item in (List<ProductComment>)ViewData["ProductComment"])
+            {
+                if (Session["oturum"] != null)
+                {
+                    AppUser gelen = (AppUser)Session["oturum"];
+                    if (gelen.ID == item.AppUserID)
+                   
+                    {
+                        <tr>
+                            <td>@item.AppUser.UserName</td>
+                            <td>@item.Product.ProductName</td>
+                            <td>@item.Comment</td>
+                            <td>@item.ProductLikes</td>
+
+                        </tr>
+                    }
+
+                }
+
+            }
+        </tbody>
+    </table>
+</div>

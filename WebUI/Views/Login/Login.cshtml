@@ -1,0 +1,97 @@
+﻿@model AppUser
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Sign in || Truemart Responsive Html5 Ecommerce Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+    <div class="wrapper">
+
+    </div>
+    <div class="log-in ptb-100 ptb-sm-60">
+
+        <div class="container">
+            <div class="row">
+
+
+                <!-- New Customer Start -->
+                <div class="col-md-6">
+                    <div class="well mb-sm-30">
+                        <div class="new-customer">
+                            <h3 class="custom-title">Kayıt Ol</h3>
+                            <p>Alış-veriş yapabilmek için üye olmanız gerekmektedir.</p>
+
+                            <a class="customer-btn" href="/Login/Register">Kayıt Ol</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Customer End -->
+                <!-- Returning Customer Start -->
+
+
+                <div class="col-md-6">
+                    <div class="well">
+                        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                        {
+
+
+
+
+                            <div class="return-customer">
+                                <h3 class="mb-10 custom-title">Giriş Yap</h3>
+                                <p class="mb-10"><strong>Kayıtlı Hesabım Var</strong></p>
+                                <form action="#">
+                                    <div class="form-group">
+                                        <label>Kullanıcı Adı</label>
+                                        @*<input type="text" name="" placeholder="Kullanıcı Adı"  class="form-control">*@
+                                        @Html.TextBoxFor(m => m.UserName, new { @name = "userName", @class = "form-control", @placeholder = "Kullanıcı Adı(*)", @type = "text" })
+                                        @Html.ValidationMessageFor(m => m.UserName, "Kullanıcı adı girmek zorunludur", new { @class = "text-danger" })
+
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Şifre</label>
+                                        @*<input type="text" name="pass" placeholder="Şifre" id="input-password" class="form-control">*@
+                                        @Html.TextBoxFor(m => m.Password, new { @name = "password", @class = "form-control", @placeholder = "Şifreniz (*)", @type = "password" })
+
+                                        @Html.ValidationMessageFor(m => m.Password, "Şifre girmek zorunludur", new { @class = "text-danger" })
+                                    </div>
+                                    <p class="lost-password"><a href="forgot-password.html">Şifremi Unuttum</a></p>
+                                    <input type="submit" value="GİRİŞ YAP" class="return-customer-btn">
+                                </form>
+                            </div>
+                        }
+
+                        @if (ViewBag.Messages != null)
+                        {
+                            <div>@ViewBag.Messages</div>
+                        }
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Returning Customer End -->
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div>
+
+</body>
+</html>
+
+

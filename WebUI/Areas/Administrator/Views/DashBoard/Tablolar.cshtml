@@ -1,0 +1,190 @@
+﻿@model Tuple<IEnumerable<EncokSatilanUrun>, IEnumerable<EnCokYorumAlanUrun>, IEnumerable<EnCokAlisVerisYapanKullanici>, IEnumerable<KullanicilarHangiSehirden>>
+
+@{
+    ViewBag.Title = "Tablolar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+
+<br />
+@Html.ActionLink("Analiz-2", "Urunler", "DashBoard", null, new { @class = "btn btn-info" })
+@Html.ActionLink("Analiz-3", "Satici", "DashBoard", null, new { @class = "btn btn-info" })
+
+<div class="container">
+    <h2>Analizler</h2>
+
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+
+
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><span>En Çok Satılan 5 ürün </span></font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Ürün Adı</th>
+                                <th>Ürün Adeti</th>
+                                <th>Toplam Kazanç</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (EncokSatilanUrun item in Model.Item1)
+                            {
+                                <tr>
+                                    <td>@item.Adi</td>
+                                    <td>@item.Adet</td>
+                                    <td>@item.Price ₺</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+
+
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En Çok Yorum Alan 5 ürün</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Ürün Adı</th>
+                                <th>Toplam Yorum Sayısı</th>
+                                <th>Toplam Beğeni Sayısı</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (EnCokYorumAlanUrun item in Model.Item2)
+                            {
+                                <tr>
+                                    <td>@item.UrunAdi</td>
+                                    <td>@item.YorumSayisi</td>
+                                    <td>@item.BegeniSayisi </td>
+
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="col-xl-3 col-lg-offset-6 col-md-6 col-sm-12 col-12" style="top:70px">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En Çok Alış-Veriş Yapan Kullanıcılar</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kullanıcı Adı</th>
+                                <th>Sipariş Sayısı</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (EnCokAlisVerisYapanKullanici item in Model.Item3)
+                            {
+                                <tr>
+                                    <td>@item.UserName</td>
+                                    <td>@item.SiparisSayisi</td>
+
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col-xl-3 col-lg col-md col-sm-5 col-lg-5 " style="top:-150px">
+
+
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kullanıcılar</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kullanıcı Adı</th>
+                                <th>İl / İlçe</th>
+                                <th>Doğum Tarihleri</th>
+                                <th>Satıcı mı?</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (KullanicilarHangiSehirden item in Model.Item4)
+                            {
+                                <tr>
+                                    <td>@item.UserName</td>
+                                    <td>@item.ProvinceName / @item.TownName</td>
+
+                                    <td>@item.BirthDate.Date</td>
+                                    @if (item.IsAdmin == true)
+                                    {
+                                        <td>Satıcı</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Kullanıcı</td>
+                                    }
+
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

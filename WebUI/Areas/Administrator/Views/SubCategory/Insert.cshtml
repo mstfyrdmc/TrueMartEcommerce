@@ -1,0 +1,41 @@
+﻿@model SubCategory
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Alt Kategori Ekleme</h2>
+
+    @using (Html.BeginForm("Insert", "SubCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div class="form-group">
+        <label for="categoryname">Üst Kategori Adı:</label>
+        @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form form-control" })
+
+        @Html.ValidationMessageFor(m => m.CategoryID, "Üst Kategori adı seçmek zorunludur", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label for="username">Alt Kategori Adı:</label>
+        @Html.TextBoxFor(m => m.SubCategoryName, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(m => m.SubCategoryName, "Alt Kategori adı girmek zorunludur", new { @class = "text-danger" })
+    </div>
+        <div class="form-group">
+            <label for="username">Açıklaması:</label>
+            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label for="image">Resim:</label>
+            <input type="file" name="fluResim" />
+
+            @Html.ValidationMessageFor(m => m.ImagePath, "Alt Kategori resmi girmek zorunludur", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-default">Kaydet</button>
+    }
+</div>
+

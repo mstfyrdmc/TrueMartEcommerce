@@ -1,0 +1,95 @@
+﻿@*@model ProductComment*@
+
+@model Tuple<Product,ProductComment>
+
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*Html.ActionLink("Yorumlar", "CommentList2", "Home", new {id=Model.Item1.ID }, new { @class = "btn customer-btn" })*@
+
+@Html.ActionLink("Yorumlar", "CommentList2", "Home", new { id = Model.Item1.ID }, new { @class="btn customer-btn"})
+
+<div class="review border-default universal-padding mt-30">
+
+    @*<ul class="review-list">
+
+            <li>
+                <span>Puan</span>
+
+
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+            <i class="fa fa-star-o"></i>
+
+            </li>
+
+        </ul>*@
+
+    @*using (Html.BeginForm("Insert", "Home", FormMethod.Post))*@
+
+    @using(Html.BeginForm("Insert","Home",FormMethod.Post))
+    {
+        <h2 class="review-title mb-30">Yorum Yap: <br><span></span></h2>
+        <p class="review-mini-title">Puanlaman</p>
+
+        <div class="col-md-10">
+
+            @Html.RadioButtonFor(m => m.Item2.ProductLikes, "1", new { id="rating-1"})
+            1
+            @Html.RadioButtonFor(m => m.Item2.ProductLikes, "2", new { id="rating-1"})
+            2
+            @Html.RadioButtonFor(m => m.Item2.ProductLikes, "3", new { id="rating-1"})
+            3
+            @Html.RadioButtonFor(m => m.Item2.ProductLikes, "4", new { id="rating-1"})
+            4
+            @Html.RadioButtonFor(m => m.Item2.ProductLikes, "5", new { id="rating-1"})
+            5
+
+        </div>
+        <div>
+            <div>
+                <div class="riview-field mt-40">
+
+                    <div>
+                        <form autocomplete="off" action="#">
+                            <div class="form-group">
+                                <label class="req" for="sure-name">Kullanıcı Adı</label>
+                                <input type="text" class="form-control" id="sure-name" required="required">
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="req" for="comments">Yorum</label>
+
+
+
+                                @Html.TextAreaFor(m=> m.Item2.Comment,new { @class="form-control"})
+                            </div>
+
+                            <button type="submit" class="btn customer-btn">Kaydet</button>
+
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    }
+
+
+
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <div>@ViewBag.Message</div>
+}
+

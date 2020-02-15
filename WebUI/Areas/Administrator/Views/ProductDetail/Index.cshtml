@@ -1,0 +1,44 @@
+﻿@model List<ProductDetail>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Ürün Detayları</h2>
+
+    @Html.ActionLink("Yeni Kayıt", "Insert", null, new { @class = "btn btn-default" })
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Ürün Rengi</th>
+                <th>Ürün Size</th>
+                <th>Ürün Açıklaması</th>
+                <th>Durum</th>
+                <th>#####</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ProductDetail item in Model)
+            {
+                <tr>
+                    <td>@(item.Product != null ? item.Product.ProductName : "-")</td>
+                    <td>@(item.ProductColour != null ? item.ProductColour.Colour : "-")</td>
+                    <td>@(item.ProductSize != null ? item.ProductSize.Size : "-")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Status</td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "Update", new { id = item.ID }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Sil", "Delete", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

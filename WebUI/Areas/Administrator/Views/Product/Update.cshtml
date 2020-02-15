@@ -1,0 +1,113 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+
+    <h2>Ürün Güncelle</h2>
+
+
+    @using (Html.BeginForm("Update", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <label for="name">Ürün Adı:</label>
+            @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">Açıklama:</label>
+            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">Fiyatı:</label>
+            @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">Stok Miktarı:</label>
+            @Html.TextBoxFor(m => m.UnitsInStock, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">Kategorisi:</label>
+            @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+
+        <div class="form-group">
+            <label for="name">Alt Kategorisi:</label>
+            @Html.DropDownList("SubCategoryID", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label for="name">Alt Alt Kategorisi:</label>
+            @Html.DropDownList("SubSubCategoryID", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">User Name:</label>
+            @Html.DropDownList("AppUserID", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">Brand Name:</label>
+            @Html.DropDownList("BrandID", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="name">Supplier Name:</label>
+            @Html.DropDownList("SupplierID", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+
+        <button type="submit" class="btn btn-default">Güncelle</button>
+    }
+
+    @if (ViewBag.Message != null)
+    {
+        <div>@ViewBag.Message</div>
+    }
+
+</div>
+@section scripts{
+    <script>
+
+
+
+
+
+         var getsubCategoryUrl = '@Url.Action("GetSubCategories")';
+    $(function () {
+
+        $('#CategoryID').change(function () {
+            var selectedCategory = $('#CategoryID').val();
+            if (selectedCategory != null) {
+                $.getJSON(getsubCategoryUrl, { id: selectedCategory }, function (subs) {
+
+                    var subSelect = $('#SubCategoryID');
+                    subSelect.empty();
+
+                    $.each(subs, function (index, sub) {
+                        subSelect.append($('<option/>', {
+
+                            value: sub.Id,
+                            text: sub.SubCategoryName
+                        }));
+
+                    });
+
+                });
+
+            }
+
+        });
+
+        });
+
+
+
+
+
+
+
+    </script>
+
+}

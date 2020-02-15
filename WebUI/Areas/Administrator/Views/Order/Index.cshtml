@@ -1,0 +1,73 @@
+﻿@model List<Order>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Sipariş Listesi</h2>
+
+
+   
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <th>Adresi</th>
+                <th>Onaylandı Mı?</th>
+                <th>Sipariş Tarihi</th>
+
+                <th>Kargolama Tarihi</th>
+                <th>Kargo Şirketi</th>
+                <th>Durum</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Order item in Model)
+            {
+            <tr>
+
+                <td>@(item.AppUser.UserName )</td>
+                <td>@item.ShippedAddress</td>
+                @if (item.IsComfirmed == true)
+                {
+                    <td>Onaylandı</td>
+                }
+                else
+                {
+                    <td>Onaylanmadı</td>
+                }
+                <td>@(item.OrderDate) </td>
+                @*<td>@item.IsComfirmed</td>*@
+
+
+
+                <td>@item.ShippedDate</td>
+                <td>@(item.Shipper.ShipperName )</td>
+
+                @if (item.Status == Status.Active)
+                {
+                    <td>Hazırlanıyor</td>
+                }
+                else if (item.Status == Status.Updated)
+                {
+                    <td>Sipariş Güncellendi</td>
+                }
+                else if (item.Status == Status.Deleted)
+                {
+                    <td>Sipariş İptal</td>
+                }
+                @*<td>@item.Status</td>*@
+
+
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

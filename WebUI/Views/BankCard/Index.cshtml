@@ -1,0 +1,68 @@
+﻿@model List<BankCard>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Kredi Kartı Listesi</h2>
+
+@Html.ActionLink("Yeni Kayıt", "Insert", "BankCard", null, new { @class = "btn customer-btn" })
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+
+            
+            <th>Kart Sahibi Adı</th>
+            <th>Kart Sahibi Soyadı</th>
+            <th>Kart No</th>
+             <th>CVC No</th>
+            <th>Son Kullanma Tarihi</th>
+            <th>Durum</th>
+             <th>Oluşturulma Tarihi</th>
+            <th>Oluşturulma IP</th>
+            <th>Güncellenme Tarihi</th>
+            <th>Güncellenme IP</th>
+            <th>######</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BankCard item in Model)
+        {
+        
+            if (Session["oturum"]!=null)
+            {
+                AppUser gelen = (AppUser)Session["oturum"];
+
+                if (gelen.ID==item.AppUserID)
+                {
+        <tr>
+            <td>@item.CardOwnerName</td>
+            <td>@item.CardOwnerLastName</td>
+            <td>@item.CardNo</td>
+            <td>@item.CardCVC</td>
+            <td>@item.BestBeforeDate</td>
+            <td>@item.Status</td>
+            <td>@item.CreatedDate</td>
+            <td>@item.CreatedIP</td>
+            <td>@item.ModifiedDate</td>
+            <td>@item.ModifiedIP</td>
+            <td>
+                @Html.ActionLink("Güncelle", "Update", "BankCard", new { id = item.ID }, new { @class = "btn customer-btn" })
+
+                @Html.ActionLink("Sil", "Delete", "BankCard", new { id = item.ID }, new { @class = "btn customer-btn" })
+
+            </td>
+        </tr>
+                }
+
+            }
+
+            
+        
+        }
+    </tbody>
+
+</table>

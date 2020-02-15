@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d49d5838f3fd465da77ad3922d63b051" Name="Diagram1">
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.AppUser" Width="1.5" PointX="5.25" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.BankCard" Width="1.5" PointX="7.5" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Brand" Width="1.5" PointX="8.25" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Cart" Width="1.5" PointX="10.5" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Category" Width="1.5" PointX="8.25" PointY="50" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.ContactInformation" Width="1.5" PointX="13.5" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Image" Width="1.5" PointX="12.75" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.OrderDetail" Width="1.5" PointX="15.75" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Order" Width="1.5" PointX="10.5" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Product" Width="1.5" PointX="10.5" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.ProductComment" Width="1.5" PointX="15.75" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.ProductSize" Width="1.5" PointX="12.75" PointY="45.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Province" Width="1.5" PointX="0.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Shipper" Width="1.5" PointX="8.25" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.SiteEmployee" Width="1.5" PointX="8.25" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Size" Width="1.5" PointX="10.5" PointY="47.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.SubCategory" Width="1.5" PointX="8.25" PointY="53.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.SubSubCategory" Width="1.5" PointX="8.25" PointY="58.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Supplier" Width="1.5" PointX="8.25" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrueMarktDataBaseModel.Town" Width="1.5" PointX="3" PointY="45.125" IsExpanded="true" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_AppUsers_dbo_Province_Province_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_AppUsers_dbo_Town_Town_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_BankCard_dbo_AppUsers_AppUserID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Cart_dbo_AppUsers_AppUserID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_ContactInformation_dbo_AppUsers_AppUserID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Orders_dbo_AppUsers_AppUserID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Product_dbo_AppUsers_AppUserID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_ProductComments_dbo_AppUsers_AppUserID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Product_dbo_Brands_BrandID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Cart_dbo_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Product_dbo_Categories_CategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_SubCategories_dbo_Categories_CategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_ContactInformation_dbo_Shippers_ShipperID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_ContactInformation_dbo_SiteEmployees_SiteEmployeeID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_ContactInformation_dbo_Supplier_SupplierID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Image_dbo_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_OrderDetails_dbo_Orders_Order_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_OrderDetails_dbo_Product_Product_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Orders_dbo_Shippers_ShipperID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Product_dbo_SubCategories_SubCategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Product_dbo_SubSubCategories_SubSubCategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Product_dbo_Supplier_SupplierID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_ProductComments_dbo_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_ProductSizes_dbo_Product_Product_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_ProductSizes_dbo_Size_Size_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Shippers_dbo_Province_ProvinceID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_SiteEmployees_dbo_Province_ProvinceID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Supplier_dbo_Province_ProvinceID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Town_dbo_Province_ProvinceID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Shippers_dbo_Town_TownID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_SiteEmployees_dbo_Town_TownID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_SubSubCategories_dbo_SubCategories_SubCategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrueMarktDataBaseModel.FK_dbo_Supplier_dbo_Town_TownID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

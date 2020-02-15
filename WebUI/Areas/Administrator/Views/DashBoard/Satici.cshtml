@@ -1,0 +1,145 @@
+﻿@model Tuple<IEnumerable<SaticiKazanc>, IEnumerable<UrunlerdenGelenGelir>, IEnumerable<SaticilarinSattigiUrunler>, IEnumerable<EnCokSatanMarkalar>>
+@{
+    ViewBag.Title = "Satici";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Satici</h2>
+<br />
+<br />
+
+<div class="container">
+    <h2>Satıcı Analizleri</h2>
+    <br />
+    @Html.ActionLink("Analiz-1", "Tablolar", "DashBoard", null, new { @class = "btn btn-info" })
+    <br />
+
+    <br />
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Satıcı Kazançları</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Satici Adi</th>
+                                <th>Kazancı</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (SaticiKazanc item in Model.Item1)
+                            {
+                                <tr>
+                                    <td>@item.SaticiAdi</td>
+                                    <td>@item.Kazanci ₺</td>
+                                </tr>
+                                @*<h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@item.Adi  @item.Adet</font></font></h2>*@
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ürünlerden Gelen Gelir</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Ürün Adi</th>
+                                <th>Satış Adedi</th>
+                                <th>Kazancı</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (UrunlerdenGelenGelir item in Model.Item2)
+                            {
+                                <tr>
+                                    <td>@item.UrunAdi</td>
+                                    <td>@item.SatisAdedi</td>
+                                    <td>@item.ToplamKazanc ₺</td>
+                                </tr>
+                                @*<h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@item.Adi  @item.Adet</font></font></h2>*@
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Satıcıların Sattığı Ürünler</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Satıcı Adi</th>
+                                <th>Ürün Adi</th>
+                                <th>Satış Adedi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (SaticilarinSattigiUrunler item in Model.Item3)
+                            {
+                                <tr>
+                                    <td>@item.SaticiAdi</td>
+                                    <td>@item.UrunAdi</td>
+                                    <td>@item.SatisAdedi</td>
+                                </tr>
+                                @*<h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@item.Adi  @item.Adet</font></font></h2>*@
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En Çok Satan Markalar</font></font></h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Marka Adi</th>
+                                <th>Satış Adedi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (EnCokSatanMarkalar item in Model.Item4)
+                            {
+                                <tr>
+                                    <td>@item.MarkaAdi</td>
+                                    <td>@item.SatisAdedi</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

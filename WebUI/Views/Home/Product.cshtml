@@ -1,0 +1,207 @@
+﻿@*@model Product*@
+
+@model Tuple<Product, List<ProductComment>>
+
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Product Details || Truemart Responsive Html5 Ecommerce Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="main-product-thumbnail ptb-100 ptb-sm-60">
+            <div class="container">
+              
+                <div class="thumb-bg">
+                    <div class="row">
+                        <div class="col-lg-5 mb-all-40">
+                            <div class="tab-content">
+                                @foreach (Image item in (List<Image>)ViewData["Image"])
+
+                                {
+                                    <div class="single-product">
+                                        @if (item.ProductID == Model.Item1.ID)
+
+
+
+                                        {
+                                            <div class="pro-img">
+
+
+                                                <img class="primary-img" src="@item.ImagePath">
+
+
+
+                                            </div>
+                                        }
+
+                                    </div>
+
+                                    <!-- Product Content End -->
+
+                                    @*<div id="thumb1" class="tab-pane fade show active">*@
+
+                                    @*<img class="primary-img" src="@item.ImagePath">*@
+
+                                    @*</div>*@
+
+
+                                }
+
+
+                            </div>
+                            <div class="product-thumbnail mt-15">
+                                <div class="thumb-menu owl-carousel nav tabs-area" role="tablist">
+                                    <a class="active" data-toggle="tab" href="#thumb1"><img src=" ~/Content/img/products/35.jpg" alt="product-thumbnail"></a>
+                                    <a data-toggle="tab" href="#thumb2"><img src=" ~/Content/img/products/13.jpg" alt="product-thumbnail"></a>
+                                    <a data-toggle="tab" href="#thumb3"><img src=" ~/Content/img/products/15.jpg" alt="product-thumbnail"></a>
+                                    <a data-toggle="tab" href="#thumb4"><img src=" ~/Content/img/products/4.jpg" alt="product-thumbnail"></a>
+                                    <a data-toggle="tab" href="#thumb5"><img src=" ~/Content/img/products/5.jpg" alt="product-thumbnail"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        @foreach (Product item in (List<Product>)ViewData["Products"])
+                        {
+
+                            if (item.ID == Model.Item1.ID)
+
+                            {
+
+                                <div class="col-lg-7">
+                                    <div class="thubnail-desc fix">
+                                        <h3 class="product-header">@item.ProductName</h3>
+                                        <div class="rating-summary fix mtb-10">
+
+
+                                            <div class="rating">
+                                                @foreach (ProductComment x in (List<ProductComment>)ViewBag.ProductComment)
+                                                {
+
+                                                    if (x.ProductID == Model.Item1.ID)
+                                                    //if (x.ProductID == Model.ID)
+                                                    {
+
+
+                                                        int toplam = (Model.Item2.Sum(h => h.ProductLikes));
+                                                        int sayi = Model.Item2.Count();
+
+                                                        int ortalama = toplam / sayi;
+
+                                                        int yildizsayisi = ortalama;
+
+                                                       
+                                                       
+                                                            for (int i = 0; i < yildizsayisi; i++)
+                                                            {
+
+                                                                <i class="fa fa-star"> </i>
+
+
+                                                            }
+
+
+                                                            break;
+                                                        
+
+                                                    }
+                                                }
+
+                                            </div>
+
+                                        </div>
+                                        <div class="pro-price mtb-30">
+                                            <p class="d-flex align-items-center"><span class="prev-price"></span><span class="price"> @item.Price ₺ </span></p>
+                                        </div>
+                                        <p class="mb-20 pro-desc-details">@item.Description</p>
+                                        <div class="box-quantity d-flex hot-product2">
+                                            <form action="#">
+                                                <input class="quantity mr-15" type="number" min="1" value="1">
+                                            </form>
+                                            <div class="pro-actions">
+                                                <div class="actions-primary">
+                                                    @if (Session["oturum"] != null)
+                                                    {
+                                                        <a href="@Url.Action("AddToCart","ShoppingCart",new { id = item.ID  })" title="" data-original-title="Add to Cart"> + Sepete Ekle</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <strong> Sepete Eklemek İçin Giriş Yapmanız Gerekmektedir.</strong>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pro-ref mt-20">
+                                            <p><span class="in-stock"><i class="ion-checkmark-round"></i> Stokt Adedi : @item.UnitsInStock</span></p>
+                                        </div>
+                                        <div class="socila-sharing mt-25">
+                                            <ul class="d-flex">
+                                                <li>Paylaş</li>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="thumnail-desc pb-100 pb-sm-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="main-thumb-desc nav tabs-area" role="tablist">
+                            <li><a class="active" data-toggle="tab" href="#dtail">Ürün Detayları</a></li>
+
+                            <li><a data-toggle="" href="@Url.Action("Insert","Home", new{id=Model.Item1.ID})">Kullanıcı Yorumları</a></li>
+
+                            @*<li><a data-toggle="" href="@Url.Action("Insert","Home", new{id=Model.ID})">Kullanıcı Yorumları</a></li>*@
+
+                            @*<li><a data-toggle="tab" href="#review">Kullanıcı Yorumları</a></li>*@
+                        </ul>
+                        <div class="tab-content thumb-content border-default">
+
+                            @foreach (ProductDetail item in (List<ProductDetail>)ViewData["ProductDetail"])
+
+                            {
+
+                                if (Model.Item1.ID == item.ProductID)
+
+                                {
+                                    <div id="dtail" class="tab-pane fade show active">
+
+                                        <p> @item.Description</p>
+
+                                    </div>
+                                }
+
+                            }
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

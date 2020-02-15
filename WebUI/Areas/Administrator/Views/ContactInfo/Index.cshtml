@@ -1,0 +1,55 @@
+﻿@model List<ContactInfo>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>İletişim Bilgileri</h2>
+
+
+    @Html.ActionLink("Yeni Kayıt", "Insert", "ContactInfo", null, new { @class = "btn btn-default" })
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Satıcı Adı</th>
+                <th>Çalışan Adı </th>
+                <th>Kargo Adı</th>
+                <th>Tedarikçi Adı</th>
+                <th>Adresi</th>
+                <th>Email Adresi</th>
+                <th>Fax No</th>
+                <th>Telefon No</th>
+                <th>Durum</th>
+                <th>#####</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ContactInfo item in Model)
+            {
+                <tr>
+                    <td>@(item.AppUser != null ? item.AppUser.UserName : "-")</td>
+                    <td>@(item.SiteEmployee != null ? item.SiteEmployee.Name : "-" )</td>
+                    <td>@(item.Shipper != null ? item.Shipper.ShipperName : "-" )</td>
+                    <td>@(item.Supplier != null ? item.Supplier.CompanyName : "-")</td>
+                    <td>@item.Address</td>
+                    <td>@item.EmailAddress</td>
+                    <td>@item.FaxNo</td>
+                    <td>@(item.PhoneNumber )</td>
+                    <td>@item.Status</td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "Update", "ContactInfo", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                        @Html.ActionLink("Sil", "Delete", "ContactInfo", new { id = item.ID }, new { @class = "btn btn-default" })
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+</div>
+

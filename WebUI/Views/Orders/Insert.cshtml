@@ -1,0 +1,48 @@
+﻿@model Order
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+@using (Html.BeginForm("Insert", "Orders", FormMethod.Post))
+{
+
+
+    <div class="container">
+        <div class="form-group">
+            <label for="name">Kargo Adresi:</label>
+            @Html.TextAreaFor(m => m.ShippedAddress, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(m => m.ShippedAddress, "Kullanıcı adresi girmek zorunludur", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            <label for="name">Kargo Şirketi:</label>
+            @Html.DropDownList("ShipperID", null, "", htmlAttributes: new { @class = "form form-control" })
+
+            @Html.ValidationMessageFor(m => m.ShipperID, "Kargo adı girmek zorunludur", new { @class = "text-danger" })
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label for="admin">Onay:</label>
+            @Html.CheckBoxFor(m => m.IsComfirmed, new { @class = "form-control", @style = "margin-left:-570px;" })
+
+        </div>
+
+
+
+
+        <button type="submit" class="btn customer-btn">Sipariş Ver</button>
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <div>@ViewBag.Message</div>
+}

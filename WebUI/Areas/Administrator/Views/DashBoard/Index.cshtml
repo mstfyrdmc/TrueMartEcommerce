@@ -1,0 +1,106 @@
+﻿@model DashBoardViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<br />
+<br />
+
+<h2>Total </h2>
+
+<br />
+@Html.ActionLink("Analiz-1", "Tablolar", "DashBoard", null, new { @class = "btn btn-info" })
+@Html.ActionLink("Analiz-2", "Urunler", "DashBoard", null, new { @class = "btn btn-info" })
+@Html.ActionLink("Analiz-3", "Satici", "DashBoard", null, new { @class = "btn btn-info" })
+<br />
+<br />
+<div class="row">
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toplam Urun Sayısı</font></font></h5>
+
+                    <h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.ToplamUrunSayisi</font></font></h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
+                    <i class="fa fa-eye fa-fw fa-sm text-info"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toplam Satıcı Sayısı</font></font></h5>
+                    <h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Model.ToplamSaticiSayisi</font></font></h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+                    <i class="fa fa-user fa-fw fa-sm text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toplam Müşteri Sayısı</font></font></h5>
+                    <h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Model.ToplamMusteriSayisi</font></font></h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toplam Üye Sayısı</font></font></h5>
+                    <h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Model.ToplamUyeSayisi</font></font></h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toplam Sipariş Sayısı</font></font></h5>
+                    <h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Model.ToplamSiparisSayisi</font></font></h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toplam Yorum Sayısı</font></font></h5>
+                    <h2 class="mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Model.ToplamYorumSayisi</font></font></h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+

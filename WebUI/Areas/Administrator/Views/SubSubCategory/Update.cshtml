@@ -1,0 +1,38 @@
+﻿@model SubSubCategory
+@{
+    /**/
+
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+    
+    <h2>Alt Alt Kategori Güncelleme</h2>
+
+    @using (Html.BeginForm("Update", "SubSubCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <label for="categoryname">Üst Kategori Adı:</label>
+            @Html.DropDownList("SubCategoryID", null, htmlAttributes: new { @class = "form form-control" })
+        </div>
+        <div class="form-group">
+            <label for="username">Alt Kategori Adı:</label>
+            @Html.TextBoxFor(m => m.SubSubCategoryName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="username">Açıklaması:</label>
+            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label for="image">Resim:</label>
+            <input type="file" name="fluResim" />
+        </div>
+
+        <button type="submit" class="btn btn-default">Güncelle</button>
+    }
+</div>
+

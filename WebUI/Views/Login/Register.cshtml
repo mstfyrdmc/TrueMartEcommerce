@@ -1,0 +1,170 @@
+﻿@model AppUser
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Register || Truemart Responsive Html5 Ecommerce Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+    <!-- Main Wrapper Start Here -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="register-title">
+                    <h3 class="mb-10">Kayıt Olun</h3>
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm("Register", "Login", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-register" action="#">
+                        <fieldset>
+                            <legend>Kişisel Bilgiler</legend>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="f-name"><span class="require">*</span>Adınız</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Name, new { @name = "Name", @class = "form-control", @placeholder = " Adınız(*)", @type = "text" })
+                                    
+                                        
+                                        @Html.ValidationMessageFor(m => m.Name, "İsim girmek zorunludur", new { @class = "text-danger" })
+                                    
+                                  
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="l-name"><span class="require">*</span>Soyadınız</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Surname, new { @name = "Surname", @class = "form-control", @placeholder = " Soyadınız(*)", @type = "text" })
+
+                                    @Html.ValidationMessageFor(m => m.Surname, "Soyadı girmek zorunludur", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="l-name"><span class="require">*</span>Kullanıcı Adınız</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.UserName, new { @name = "userName", @class = "form-control", @placeholder = "Kullanıcı Adı(*)", @type = "text" })
+                                    @Html.ValidationMessageFor(m => m.UserName, "Kullanıcı adı girmek zorunludur", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="email"><span class="require">*</span>E-mail Adresiniz</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.EmailAdress, new { @name = "EmailAddress", @class = "form-control", @placeholder = "Email Adresiniz(*)", @type = "text" })
+
+                                    @Html.ValidationMessageFor(m => m.EmailAdress, "E-mail girmek zorunludur", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="email"><span class="require">*</span>İl</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("ProvinceID", null, "", htmlAttributes: new { @class = "form form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="email"><span class="require">*</span>İlçe</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("TownID", null, "", htmlAttributes: new { @class = "form form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="date"><span class="require">*</span>Doğum Tarihi</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", @type = "date" })
+
+                                    @Html.ValidationMessageFor(m => m.BirthDate, "Doğum Tarihi girmek zorunludur", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2"><span class="require">*</span>Cinsiyet</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.Sex, new SelectList(Enum.GetValues(typeof(Model.Entities.Enum.Sex))), "Cinsiyet")
+
+
+                                    @Html.ValidationMessageFor(m => m.Sex, "Cinsiyet girmek zorunludur", new { @class = "text-danger" })
+
+
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Şifreniz</legend>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Şifreniz:</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Password, new { @name = "password", @class = "form-control", @placeholder = "Şifreniz (*)", @type = "password" })
+
+                                    @Html.ValidationMessageFor(m => m.Password, "Şifre girmek zorunludur", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <div class="terms">
+                            <div class="float-md-right">
+                                <span>Şartları okudum ve kabul ediyorum <a href="#" class="agree"><b>Gizlilik Sözleşmesi</b></a></span>
+                                <input type="checkbox" name="agree" value="1"> &nbsp;
+                                <input type="submit" value="Devam Et" class="return-customer-btn">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+
+        <!-- Row End -->
+        <!-- Row End -->
+    </div>
+    <!-- Container End -->
+</body>
+</html>
+
+@section scripts{
+
+    <script>
+
+         $(function () {
+        if ($("#ProvinceID").val() == '0') {
+            var productDefaultValue = "<option value='0'>--Select a category first--</option>";
+            $("#TownID").html(productDefaultValue).show();
+        }
+
+        $("#ProvinceID").change(function () {
+            var selectedItemValue = $(this).val();
+            
+            var ddlProducts = $("#TownID");
+            
+            $.ajax({
+                cache: false,
+                type: "GET",
+                dataType:'json',
+                url: '@Url.Action("GetTownByProvince")',
+                data: { "id": selectedItemValue  },
+                success: function (data) {
+                    ddlProducts.html('');
+                    $.each(data, function (id, option) {
+                        ddlProducts.append($('<option></option>').val(option.id).html(option.name));
+                        //ddlProducts.append('<option value=' + option.selectedItemValue + '>' + option.Text + '</option>');
+
+                    });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Found error to load product!!.');
+                }
+            });
+        });
+    });
+
+    </script>
+
+}
+

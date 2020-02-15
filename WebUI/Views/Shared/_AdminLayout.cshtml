@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>*@
+                @*@Html.ActionLink("Admin Paneli", "Index","Product", new { area = "Administrator" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (Session["oturum"] != null)
+                    {
+
+                        AppUser gelen = (AppUser)Session["oturum"];
+                        <li> @Html.ActionLink(gelen.UserName, "Index", "Product", new { area = "Administrator" }, new { @class = "navbar-brand" })  </li>
+                    }
+
+                    <li>@Html.ActionLink("Ürünler", "Index", "Product")</li>
+                    <li>@Html.ActionLink("Ürün Resimleri", "Index", "Image")</li>
+                    <li>@Html.ActionLink("Ürün Renkleri", "Index", "ProductColour")</li>
+                    <li>@Html.ActionLink("Ürün Bedenleri", "Index", "ProductSize")</li>
+                    <li>@Html.ActionLink("Ürün Yorumları", "Index", "ProductComment")</li>
+                    <li>@Html.ActionLink("Ürün Detayları", "Index", "ProductDetail")</li>
+                    <li>@Html.ActionLink("Kategoriler", "Index", "Category")</li>
+                    <li>@Html.ActionLink("Alt Kategoriler", "Index", "SubCategory")</li>
+                    <li>@Html.ActionLink("En Alt Kategoriler", "Index", "SubSubCategory")</li>
+                    <li>@Html.ActionLink("Markalar", "Index", "Brand")</li>
+                    <li>@Html.ActionLink("Tedarikçiler", "Index", "Supplier")</li>
+                    <li>@Html.ActionLink("Siparişler", "Index", "Order")</li>
+                    <li>@Html.ActionLink("İletişim Bilgileri", "Index", "ContactInfo")</li>
+                    <li>@Html.ActionLink("İller", "Index", "Province")</li>
+                    <li>@Html.ActionLink("İlçeler", "Index", "Town")</li>
+                    <li>@Html.ActionLink("DashBoard", "Index", "DashBoard")</li>
+                    @*<li>@Html.ActionLink("Analizler", "Tablolar", "DashBoard")</li>
+                    <li>@Html.ActionLink("Analizler-2", "Urunler", "DashBoard")</li>
+                    <li>@Html.ActionLink("Satici Analizleri", "Satici", "DashBoard")</li>*@
+
+                </ul>
+                <br />
+                <br />
+
+                    
+
+
+                
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - TrueMart E-Commerce Web-Site Administrator Area</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

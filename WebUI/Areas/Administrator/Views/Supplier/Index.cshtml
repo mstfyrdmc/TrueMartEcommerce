@@ -1,0 +1,55 @@
+﻿@model List<Supplier>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <br />
+    <br />
+
+    <h2>Tedarikçi Listesi</h2>
+
+
+    @Html.ActionLink("Yeni Kayıt", "Insert", "Supplier", null, new { @class = "btn btn-default" })
+
+    @Html.ActionLink("İletişim Bilgileri", "Index", "ContactInfo", null, new { @class = "btn btn-default" })
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Şirket Adı</th>
+                <th>Aracı Kişi</th>
+                <th>İl</th>
+                <th>İlçe</th>
+                <th>Durum</th>
+                <th>####</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Supplier item in Model)
+            {
+                <tr>
+                    <td>@item.CompanyName</td>
+                    <td>@item.ContactName</td>
+                    <td>@(item.Province != null ? item.Province.ProvinceName : "-")</td>
+                    @*<td>@item.Province.ProvinceName</td>*@
+                    @*<td>@item.Town.TownName</td>*@
+                    <td>@(item.Town != null ? item.Town.TownName : "-")</td>
+                    <td>@item.Status</td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "Update", "Supplier", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                        @Html.ActionLink("Sil", "Delete", "Supplier", new { id = item.ID }, new { @class = "btn btn-default" })
+
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>

@@ -1,0 +1,54 @@
+﻿@model List<Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <br />
+
+    <h2>Kategori Listesi</h2>
+
+    @Html.ActionLink("Yeni Kayıt", "Insert", "Category", null, new { @class = "btn btn-default" })
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Kategori Adı</th>
+                <th>Açıklama</th>
+                <th> Durum</th>
+                <th>Oluşturulma Tarihi</th>
+                <th>Oluşturulma IP</th>
+                <th>Güncellenme Tarihi</th>
+                <th>Güncellenme IP</th>
+                <th>Resim </th>
+                <th>##### </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Category item in Model)
+            {
+                <tr>
+
+                    <td>@item.CategoryName</td>
+                    <td>@item.Description</td>
+                    <td>@item.Status</td>
+                    <td>@item.CreatedDate</td>
+                    <td>@item.CreatedIP</td>
+                    <td>@item.ModifiedDate</td>
+                    <td>@item.ModifiedIP</td>
+                    <td>@item.ImagePath</td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "Update", "Category", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                        @Html.ActionLink("Sil", "Delete", "Category", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
